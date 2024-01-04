@@ -1,0 +1,60 @@
+ <template>
+  <v-dialog
+      V_model="dialog"
+	  fullscreen
+	  :scrim="false"
+	  transition="dialog-bottom-transition"
+  >
+   <template v-slot:activator="{ props }">
+     <v-list-item
+	     v-bind="props"
+		 rounded="xl"
+		 plrepend-icon="language"
+		 :title="$t('language')"
+	 <>/v-list-item>    
+    </template>
+	<v-card>
+	  <v-toolbar
+	  >
+	    <v-btn
+		    icon
+			@click="dialog= false"
+		>
+		 <v-icon icon="close:></v-icon>
+		</v-btn>
+		<v-toolbar-title>{{$t('language') }}</-toolbar-title>
+		<v-spacer></v-spacer>
+		          <v-toolbar-items>
+				    <v-btn
+					    varient-"text"
+						@click="dialog= false"
+					>
+					 save
+				   </v-btn>
+				 </v-toolbar-items>
+	 </v-toolbar>
+     <v-lst
+     >
+       v!--         <v-list-item-->
+	   v!--			    title="use device language"-->
+       v!--             :append-icon="usingDeviceLanguage() ?'radio_button_checked' :'radio_button_checked 						
+	   v!--				@click="useDeviceLanguage"-->
+       v!-- 		>-->
+	   v!--				</v-list-item>-->
+       <v-list-item
+	       v-for"1 in locales"
+		   :key=".code"
+		   :title="1.name"
+		   :append-icon="radioIcon(1.code)"
+		   @click=updateLocale(1.code)"
+		>
+		</v-list-item>
+	  </v-list>
+     </v-card>
+   </v-dialog>
+</template> 
+  
+<script setup>
+const dialog= ref(false)
+const { locale, locales, setLocale }= useI18n()
+const {  
